@@ -6,15 +6,11 @@ using System.Linq;
 
 namespace DMG.Logic
 {
-    class EnemiesLogic
-    {
-    }
-
-    public class GenerateEnemies
+    public class EnemiesLogic
     {
         private List<Enemy> predefinedEnemies = new List<Enemy>();
 
-        public GenerateEnemies()
+        public EnemiesLogic()
         {
             predefinedEnemies.Add(new Enemy { type = EnemyTypes.Bunker, armor = (ushort)ArmorValues.lot, hitpoints = (ushort)HitpointsValues.medium, symbol = 'B' });
             predefinedEnemies.Add(new Enemy { type = EnemyTypes.Barrack, armor = (ushort)ArmorValues.few, hitpoints = (ushort)HitpointsValues.lot, symbol = 'A' });

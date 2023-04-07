@@ -13,8 +13,12 @@ namespace DMG
         public MainWindow()
         {
             InitializeComponent();
-            GenerateEnemies generator = new GenerateEnemies();
+            EnemiesLogic generator = new EnemiesLogic();
+            BoardLogic boardLogic = new BoardLogic();
+
             List<BoardEnemy> enemies = generator.generateBoardEnemies();
+
+            Enemy[,] board = boardLogic.generateBoard(enemies);
         }
     }
 }

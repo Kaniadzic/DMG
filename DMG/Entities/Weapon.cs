@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DMG.Entities
+﻿namespace DMG.Entities
 {
-    class Weapon
+    public class Weapon
     {
     }
 }
