@@ -16,7 +16,7 @@ namespace DMG.Entities
         {
             if (this.armor >= 0)
             {
-                this.armor -= (ushort)(damage * penetration);
+                this.armor -= (ushort)(damage * (penetration / 100));
             }
             else
             {

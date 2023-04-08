@@ -29,8 +29,25 @@
         lot = 100
     }
 
-    public enum Colors
+    public enum PenetrationValues
     {
-       
+        none = 10,
+        weak = 25,
+        medium = 60,
+        strong = 90
+    }
+
+    public enum DamageValues
+    {
+        weak = 25,
+        medium = 55, 
+        strong = 88
+    }
+
+    public enum WeaponType
+    {
+       hitscan,
+       projectile,
+       area
     }
 }

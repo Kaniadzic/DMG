@@ -15,10 +15,10 @@ namespace DMG
             InitializeComponent();
             EnemiesLogic generator = new EnemiesLogic();
             BoardLogic boardLogic = new BoardLogic();
+            Weapon weaponLogic = new Weapon();
 
-            List<BoardEnemy> enemies = generator.generateBoardEnemies();
-
-            Enemy[,] board = boardLogic.generateBoard(enemies);
+            List<Weapon> weapons = weaponLogic.initializeWeapons();
+            Enemy[,] board = boardLogic.generateBoard(generator.generateBoardEnemies());
         }
     }
 }
