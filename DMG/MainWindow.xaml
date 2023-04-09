@@ -1,0 +1,159 @@
+﻿<Window x:Class="DMG.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DMG"
+        mc:Ignorable="d"
+        Title="DMG" 
+        MinHeight="450" 
+        MinWidth="800"
+        MaxHeight="600"
+        MaxWidth="1000">
+    <Grid RenderTransformOrigin="0.501,0.615">
+        <Grid.RowDefinitions>
+            <RowDefinition 
+                Height="321*">
+
+            </RowDefinition>
+            <RowDefinition 
+                Height="113*">
+            </RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- Plansza -->
+        <Grid 
+              Grid.Row="0"
+              Background="White">
+        </Grid>
+
+        <!-- Menu broni -->
+        <Grid 
+              Grid.Row="1"
+              Background="DarkGray">
+
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!-- Hitscan -->
+            <Grid
+                Grid.Row="0"
+                Grid.Column="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    Text="Hitscan"
+                    Style="{StaticResource TextBlock_WeaponTag}">
+                </TextBlock>
+
+                <Button
+                    Grid.Row="1"
+                    Content="Karabin"
+                    Style="{StaticResource Button_WeaponTag}" 
+                    HorizontalAlignment="Left" 
+                    Margin="18,11,0,10" 
+                    VerticalAlignment="Stretch"/>
+                <Button
+                    Grid.Row="1"
+                    Content="Działko"
+                    Style="{StaticResource Button_WeaponTag}" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,11,19,10" 
+                    VerticalAlignment="Stretch">
+                </Button>
+            </Grid>
+
+            <!-- Projectile -->
+            <Grid
+                Grid.Row="0"
+                Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    Text="Projectile"
+                    Style="{StaticResource TextBlock_WeaponTag}">
+                </TextBlock>
+
+                <Button
+                    Grid.Row="1"
+                    Content="Fleszetki"
+                    Style="{StaticResource Button_WeaponTag}" 
+                    HorizontalAlignment="Left" 
+                    Margin="18,11,0,10" 
+                    VerticalAlignment="Stretch"/>
+                <Button
+                    Grid.Row="1"
+                    Content="Rakieta"
+                    Style="{StaticResource Button_WeaponTag}" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,11,19,10" 
+                    VerticalAlignment="Stretch">
+                </Button>
+            </Grid>
+
+            <!-- Obszarowe -->
+            <Grid
+                Grid.Row="0"
+                Grid.Column="2">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    Text="Bomby (obszarowe)"
+                    Style="{StaticResource TextBlock_WeaponTag}">
+                </TextBlock>
+
+                <Button
+                    Grid.Row="1"
+                    Content="Burząca"
+                    Style="{StaticResource Button_WeaponTag}" 
+                    HorizontalAlignment="Left" 
+                    Margin="18,11,0,10" 
+                    VerticalAlignment="Stretch"/>
+                <Button
+                    Grid.Row="1"
+                    Content="Tocząca"
+                    Style="{StaticResource Button_WeaponTag}" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,11,19,10" 
+                    VerticalAlignment="Stretch">
+                </Button>
+                <Button
+                    Grid.Row="1"
+                    Content="Odłamkowa"
+                    Style="{StaticResource Button_WeaponTag}" 
+                    HorizontalAlignment="Left" 
+                    Margin="112,11,0,10" 
+                    VerticalAlignment="Stretch"/>
+                <Button
+                    Grid.Row="1"
+                    Content="Zapalająca"
+                    Style="{StaticResource Button_WeaponTag}" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,11,120,10" 
+                    VerticalAlignment="Stretch">
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
