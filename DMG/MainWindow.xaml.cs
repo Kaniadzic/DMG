@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using DMG.Entities;
 using DMG.Enums;
 using DMG.Logic;
@@ -31,9 +32,11 @@ namespace DMG
 
             boardLogic.populateBoard(Grid_GameBoard);
             boardLogic.populateBoardWithEnemies(enemies, Grid_GameBoard);
+
+            initializeBoardButtons();
         }
 
-        private void shoot()
+        private void shoot(object sender, RoutedEventArgs e)
         {
             if (selectedWeapon == null) {
                 MessageBox.Show("Przed oddaniem strzału wybierz broń!");
@@ -42,6 +45,17 @@ namespace DMG
             {
                 shootCounter += 1;
                 TextBlock_ShootCounter.Text = shootCounter.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Dodanie eventu click do planszy
+        /// </summary>
+        private void initializeBoardButtons()
+        {
+            foreach(Button btn in Grid_GameBoard.Children)
+            {
+                btn.Click += new RoutedEventHandler(this.shoot);
             }
         }
 
