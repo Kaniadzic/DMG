@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using DMG.Entities;
 using DMG.Enums;
 using DMG.Logic;
@@ -24,7 +25,29 @@ namespace DMG
             ListView_Enemies.ItemsSource = enemies;
 
             Enemy[,] board = boardLogic.generateBoard(enemies);
+
+            test(enemies);
         }
+
+        private void test(List<BoardEnemy> enemies)
+        {
+            foreach(var enemy in enemies)
+            {
+                Button btn = new Button();
+                btn.Content = enemy.enemy.symbol;
+                btn.Height = 32;
+                btn.Width = 32;
+
+                Grid_GameBoard.Children.Add(btn);
+
+                Grid.SetRow(btn, enemy.coordinates.y);
+                Grid.SetColumn(btn, enemy.coordinates.x);
+            }
+         
+        }
+
+        #region on button click
+
         private void Button_Weapon_Gun_Click(object sender, RoutedEventArgs e)
         {
             this.selectedWeapon = new Weapon("Karabin", DamageValues.weak, PenetrationValues.weak, WeaponType.hitscan, 100);
@@ -64,5 +87,7 @@ namespace DMG
         {
             this.selectedWeapon = new Weapon("Bomba zapalająca", DamageValues.medium, PenetrationValues.weak, WeaponType.hitscan, 100);
         }
+
+        #endregion
     }
 }

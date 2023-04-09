@@ -11,7 +11,7 @@ namespace DMG.Logic
         /// <param name="enemies"> Lista przeciwników z koordynatami </param>
         /// <param name="size"> Rozmiar planszy </param>
         /// <returns> Plansza z przeciwnikami </returns>
-        public Enemy[,] generateBoard(List<BoardEnemy> enemies, ushort size = 11)
+        public Enemy[,] generateBoard(List<BoardEnemy> enemies, ushort size = 9)
         {
             Enemy[,] board = new Enemy[size, size];
 
