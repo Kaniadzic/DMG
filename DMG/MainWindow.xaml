@@ -28,10 +28,10 @@
               Background="White">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="7*"></ColumnDefinition>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            
+
             <!-- Gra -->
             <Grid
                 Grid.Column="0"
@@ -39,8 +39,8 @@
 
                 <Grid
                     Background="Black"
-                    Width="280"
-                    Height="280"
+                    Width="288"
+                    Height="288"
                     x:Name="Grid_GameBoard">
 
                     <Grid.ColumnDefinitions>
@@ -97,6 +97,7 @@
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Typ" Width="75" DisplayMemberBinding="{Binding enemy.type}"/>
+                            <GridViewColumn Header="Symbol" Width="50" DisplayMemberBinding="{Binding enemy.symbol}"/>
                             <GridViewColumn Header="Zdrowie" Width="55" DisplayMemberBinding="{Binding enemy.hitpoints}"/>
                             <GridViewColumn Header="Pancerz" Width="55" DisplayMemberBinding="{Binding enemy.armor}"/>
                         </GridView>
@@ -211,15 +212,15 @@
                     Content="Burząca"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Left" 
-                    Margin="18,11,0,10" 
+                    Margin="0" 
                     VerticalAlignment="Stretch" Click="Button_Weapon_ExplosiveBomb_Click"/>
                 <Button
                     x:Name="Button_Weapon_RollingBomb"
                     Grid.Row="1"
                     Content="Tocząca"
                     Style="{StaticResource Button_WeaponTag}" 
-                    HorizontalAlignment="Right" 
-                    Margin="0,11,19,10" 
+                    HorizontalAlignment="Left" 
+                    Margin="96 0 0 0" 
                     VerticalAlignment="Stretch" Click="Button_Weapon_RollingBomb_Click">
                 </Button>
                 <Button
@@ -228,15 +229,15 @@
                     Content="Odłamkowa"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Left" 
-                    Margin="112,11,0,10" 
+                    Margin="192 0 0 0" 
                     VerticalAlignment="Stretch" Click="Button_Weapon_ShardBomb_Click"/>
                 <Button
                     x:Name="Button_Weapon_FlameBomb"
                     Grid.Row="1"
                     Content="Zapalająca"
                     Style="{StaticResource Button_WeaponTag}" 
-                    HorizontalAlignment="Right" 
-                    Margin="0,11,120,10" 
+                    HorizontalAlignment="Left" 
+                    Margin="288 0 0 0" 
                     VerticalAlignment="Stretch" Click="Button_Weapon_FlameBomb_Click">
                 </Button>
             </Grid>

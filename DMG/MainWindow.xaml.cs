@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using DMG.Entities;
 using DMG.Enums;
 using DMG.Logic;
@@ -26,10 +28,11 @@ namespace DMG
 
             Enemy[,] board = boardLogic.generateBoard(enemies);
 
-            test(enemies);
+            populateBoard();
+            populateBoardWithEnemies(enemies);
         }
 
-        private void test(List<BoardEnemy> enemies)
+        private void populateBoardWithEnemies(List<BoardEnemy> enemies)
         {
             foreach(var enemy in enemies)
             {
@@ -37,13 +40,35 @@ namespace DMG
                 btn.Content = enemy.enemy.symbol;
                 btn.Height = 32;
                 btn.Width = 32;
+                btn.FontWeight = FontWeights.Bold;
+                btn.Background = Brushes.Red;
+                btn.BorderBrush = null;
 
                 Grid_GameBoard.Children.Add(btn);
 
                 Grid.SetRow(btn, enemy.coordinates.y);
                 Grid.SetColumn(btn, enemy.coordinates.x);
             }
-         
+        }
+
+        private void populateBoard(byte x = 9, byte y = 9)
+        {
+            for(int i = 0; i < x; i++)
+            {
+                for (int j = 0; j < y; j++)
+                {
+                    Button btn = new Button();
+                    btn.Content = "";
+                    btn.Height = 32;
+                    btn.Width = 32;
+                    btn.BorderBrush = null;
+
+                    Grid_GameBoard.Children.Add(btn);
+
+                    Grid.SetRow(btn, i);
+                    Grid.SetColumn(btn, j);
+                }
+            }
         }
 
         #region on button click
