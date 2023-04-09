@@ -9,7 +9,8 @@
         MinHeight="450" 
         MinWidth="800"
         MaxHeight="600"
-        MaxWidth="1000">
+        MaxWidth="1000"
+        FontFamily="Consolas">
     <Grid RenderTransformOrigin="0.501,0.615">
         <Grid.RowDefinitions>
             <RowDefinition 
@@ -25,6 +26,39 @@
         <Grid 
               Grid.Row="0"
               Background="White">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Gra -->
+            <Grid
+                Grid.Column="0"
+                Background="White">
+
+            </Grid>
+
+            <!-- Lista przeciwników -->
+            <Grid
+                Grid.Column="1"
+                Background="AliceBlue">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="1*">
+                    </RowDefinition>
+                    <RowDefinition
+                        Height="9*">
+                    </RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    Text="Przeciwnicy:"
+                    Style="{StaticResource TextBlock_WeaponTag}">
+                </TextBlock>
+            </Grid>
         </Grid>
 
         <!-- Menu broni -->

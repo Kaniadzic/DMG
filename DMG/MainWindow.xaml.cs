@@ -10,6 +10,8 @@ namespace DMG
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Weapon selectedWeapon = null;
+
         public MainWindow()
         {
             InitializeComponent();
