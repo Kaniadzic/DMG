@@ -8,8 +8,8 @@
         Title="DMG" 
         MinHeight="450" 
         MinWidth="800"
-        MaxHeight="600"
-        MaxWidth="1000"
+        MaxHeight="450"
+        MaxWidth="800"
         FontFamily="Consolas">
     <Grid RenderTransformOrigin="0.501,0.615">
         <Grid.RowDefinitions>
@@ -28,8 +28,8 @@
               Background="White">
 
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
                 <ColumnDefinition Width="3*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             
             <!-- Gra -->
@@ -58,6 +58,20 @@
                     Text="Przeciwnicy:"
                     Style="{StaticResource TextBlock_WeaponTag}">
                 </TextBlock>
+
+                <ListView
+                    Grid.Row="1"
+                    Background="AliceBlue"
+                    Name="ListView_Enemies">
+
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Typ" Width="75" DisplayMemberBinding="{Binding enemy.type}"/>
+                            <GridViewColumn Header="Zdrowie" Width="55" DisplayMemberBinding="{Binding enemy.hitpoints}"/>
+                            <GridViewColumn Header="Pancerz" Width="55" DisplayMemberBinding="{Binding enemy.armor}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
         </Grid>
 

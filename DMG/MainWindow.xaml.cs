@@ -20,7 +20,10 @@ namespace DMG
             BoardLogic boardLogic = new BoardLogic();
             Weapon weaponLogic = new Weapon();
 
-            Enemy[,] board = boardLogic.generateBoard(generator.generateBoardEnemies());
+            List<BoardEnemy> enemies = generator.generateBoardEnemies();
+            ListView_Enemies.ItemsSource = enemies;
+
+            Enemy[,] board = boardLogic.generateBoard(enemies);
         }
         private void Button_Weapon_Gun_Click(object sender, RoutedEventArgs e)
         {
