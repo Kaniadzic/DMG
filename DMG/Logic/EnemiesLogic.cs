@@ -59,6 +59,9 @@ namespace DMG.Logic
             List<EnemyCoordinates> coordinates = new List<EnemyCoordinates>();
             Random random = new Random();
 
+            // lista pomocnicza
+            List<string> helperList = new List<string>();
+
             while (coordinates.Count < enemiesCount)
             {
                 EnemyCoordinates coord = new EnemyCoordinates(
@@ -66,8 +69,9 @@ namespace DMG.Logic
                     (byte)random.Next(0, maxY)
                 );
 
-                if (!coordinates.Contains(coord))
+                if (!helperList.Contains($"{coord.x}{coord.y}"))
                 {
+                    helperList.Add($"{coord.x}{coord.y}");
                     coordinates.Add(coord);
                 }
             }

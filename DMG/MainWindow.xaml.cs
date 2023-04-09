@@ -45,6 +45,10 @@ namespace DMG
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="weapon"> Nowa broń </param>
         private void weaponChange(Weapon weapon)
         {
             TextBlock_SelectedWeapon.Text = $"{weapon.name} DMG: {weapon.damage.ToString()} Penetracja: {weapon.penetration.ToString()}";
