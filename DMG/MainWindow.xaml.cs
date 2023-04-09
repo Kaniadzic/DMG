@@ -16,6 +16,8 @@ namespace DMG
         private WindDirection windDirection = WindLogic.randomizeWindDirection();
         private uint shootCounter = 0;
 
+        private Enemy[,] board;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,7 +30,7 @@ namespace DMG
             List<BoardEnemy> enemies = generator.generateBoardEnemies();
             ListView_Enemies.ItemsSource = enemies;
 
-            Enemy[,] board = boardLogic.generateBoard(enemies);
+            board = boardLogic.generateBoard(enemies);
 
             boardLogic.populateBoard(Grid_GameBoard);
             boardLogic.populateBoardWithEnemies(enemies, Grid_GameBoard);
@@ -45,6 +47,11 @@ namespace DMG
             {
                 shootCounter += 1;
                 TextBlock_ShootCounter.Text = shootCounter.ToString();
+
+                int x = Grid.GetColumn((UIElement)sender);
+                int y = Grid.GetRow((UIElement)sender);
+
+                var dupa = board[x, y];
             }
         }
 
@@ -53,7 +60,7 @@ namespace DMG
         /// </summary>
         private void initializeBoardButtons()
         {
-            foreach(Button btn in Grid_GameBoard.Children)
+            foreach (Button btn in Grid_GameBoard.Children)
             {
                 btn.Click += new RoutedEventHandler(this.shoot);
             }
