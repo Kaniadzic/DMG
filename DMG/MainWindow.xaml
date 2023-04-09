@@ -92,19 +92,21 @@
                 </TextBlock>
 
                 <Button
+                    x:Name="Button_Weapon_Gun"
                     Grid.Row="1"
                     Content="Karabin"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Left" 
                     Margin="18,11,0,10" 
-                    VerticalAlignment="Stretch"/>
+                    VerticalAlignment="Stretch" Click="Button_Weapon_Gun_Click"/>
                 <Button
+                    x:Name="Button_Weapon_Cannon"
                     Grid.Row="1"
                     Content="Działko"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Right" 
                     Margin="0,11,19,10" 
-                    VerticalAlignment="Stretch">
+                    VerticalAlignment="Stretch" Click="Button_Weapon_Cannon_Click">
                 </Button>
             </Grid>
 
@@ -125,19 +127,21 @@
                 </TextBlock>
 
                 <Button
+                    x:Name="Button_Weapon_Flechettes"
                     Grid.Row="1"
                     Content="Fleszetki"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Left" 
                     Margin="18,11,0,10" 
-                    VerticalAlignment="Stretch"/>
+                    VerticalAlignment="Stretch" Click="Button_Weapon_Flechettes_Click"/>
                 <Button
+                    x:Name="Button_Weapon_Rocket"
                     Grid.Row="1"
                     Content="Rakieta"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Right" 
                     Margin="0,11,19,10" 
-                    VerticalAlignment="Stretch">
+                    VerticalAlignment="Stretch" Click="Button_Weapon_Rocket_Click">
                 </Button>
             </Grid>
 
@@ -158,34 +162,38 @@
                 </TextBlock>
 
                 <Button
+                    x:Name="Button_Weapon_ExplosiveBomb"
                     Grid.Row="1"
                     Content="Burząca"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Left" 
                     Margin="18,11,0,10" 
-                    VerticalAlignment="Stretch"/>
+                    VerticalAlignment="Stretch" Click="Button_Weapon_ExplosiveBomb_Click"/>
                 <Button
+                    x:Name="Button_Weapon_RollingBomb"
                     Grid.Row="1"
                     Content="Tocząca"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Right" 
                     Margin="0,11,19,10" 
-                    VerticalAlignment="Stretch">
+                    VerticalAlignment="Stretch" Click="Button_Weapon_RollingBomb_Click">
                 </Button>
                 <Button
+                    x:Name="Button_Weapon_ShardBomb"
                     Grid.Row="1"
                     Content="Odłamkowa"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Left" 
                     Margin="112,11,0,10" 
-                    VerticalAlignment="Stretch"/>
+                    VerticalAlignment="Stretch" Click="Button_Weapon_ShardBomb_Click"/>
                 <Button
+                    x:Name="Button_Weapon_FlameBomb"
                     Grid.Row="1"
                     Content="Zapalająca"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Right" 
                     Margin="0,11,120,10" 
-                    VerticalAlignment="Stretch">
+                    VerticalAlignment="Stretch" Click="Button_Weapon_FlameBomb_Click">
                 </Button>
             </Grid>
         </Grid>
