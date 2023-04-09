@@ -6,19 +6,21 @@
         xmlns:local="clr-namespace:DMG"
         mc:Ignorable="d"
         Title="DMG" 
-        MinHeight="450" 
+        MinHeight="550" 
         MinWidth="800"
-        MaxHeight="450"
+        MaxHeight="550"
         MaxWidth="800"
         FontFamily="Consolas">
     <Grid RenderTransformOrigin="0.501,0.615">
         <Grid.RowDefinitions>
             <RowDefinition 
-                Height="321*">
-
+                Height="9*">
             </RowDefinition>
             <RowDefinition 
-                Height="113*">
+                Height="3*">
+            </RowDefinition>
+            <RowDefinition 
+                Height="2*">
             </RowDefinition>
         </Grid.RowDefinitions>
 
@@ -240,6 +242,90 @@
                     Margin="288 0 0 0" 
                     VerticalAlignment="Stretch" Click="Button_Weapon_FlameBomb_Click">
                 </Button>
+            </Grid>
+        </Grid>
+        
+        <!-- Informacje -->
+        <Grid 
+              Grid.Row="2"
+              Background="White">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition 
+                Width="5*">
+                </ColumnDefinition>
+                <ColumnDefinition 
+                Width="2*">
+                </ColumnDefinition>
+                <ColumnDefinition 
+                Width="1*">
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Wybrana broń -->
+            <Grid
+                Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    FontWeight="Bold"
+                    Text="Wybrana broń: "
+                    Style="{StaticResource TextBlock_WeaponTag}">
+                </TextBlock>
+                <TextBlock
+                    Name="TextBlock_SelectedWeapon"
+                    Grid.Row="1"
+                    Text="Żadna! Wybierz broń!"
+                    Style="{StaticResource TextBlock_WeaponTag}">
+                </TextBlock>
+            </Grid>
+            
+            <!-- Kierunek wiatru -->
+            <Grid
+                Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    FontWeight="Bold"
+                    Text="Kierunek wiatru: "
+                    Style="{StaticResource TextBlock_WeaponTag}">
+                </TextBlock>
+                <TextBlock
+                    Name="TextBlock_WindDirection"
+                    Grid.Row="1"
+                    Text=""
+                    Style="{StaticResource TextBlock_WeaponTag}">
+                </TextBlock>
+            </Grid>
+
+            <!-- Licznik strzałów -->
+            <Grid
+                Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    Grid.Row="0"
+                    FontWeight="Bold"
+                    Text="Strzały: "
+                    Style="{StaticResource TextBlock_WeaponTag}">
+                </TextBlock>
+                <TextBlock
+                    Name="TextBlock_ShootCounter"
+                    Grid.Row="1"
+                    Text="0"
+                    Style="{StaticResource TextBlock_WeaponTag}">
+                </TextBlock>
             </Grid>
         </Grid>
     </Grid>

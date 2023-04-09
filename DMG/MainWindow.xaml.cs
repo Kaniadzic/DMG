@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using DMG.Entities;
 using DMG.Enums;
 using DMG.Logic;
@@ -16,6 +13,7 @@ namespace DMG
     {
         private Weapon selectedWeapon = null;
         private WindDirection windDirection = WindLogic.randomizeWindDirection();
+        private uint shootCounter = 0;
 
         public MainWindow()
         {
@@ -23,6 +21,8 @@ namespace DMG
             EnemiesLogic generator = new EnemiesLogic();
             BoardLogic boardLogic = new BoardLogic();
             Weapon weaponLogic = new Weapon();
+
+            TextBlock_WindDirection.Text = windDirection.ToString();
 
             List<BoardEnemy> enemies = generator.generateBoardEnemies();
             ListView_Enemies.ItemsSource = enemies;
@@ -33,46 +33,71 @@ namespace DMG
             boardLogic.populateBoardWithEnemies(enemies, Grid_GameBoard);
         }
 
+        private void shoot()
+        {
+            if (selectedWeapon == null) {
+                MessageBox.Show("Przed oddaniem strzału wybierz broń!");
+            }
+            else
+            {
+                shootCounter += 1;
+                TextBlock_ShootCounter.Text = shootCounter.ToString();
+            }
+        }
+
+        private void weaponChange(Weapon weapon)
+        {
+            TextBlock_SelectedWeapon.Text = $"{weapon.name} DMG: {weapon.damage.ToString()} Penetracja: {weapon.penetration.ToString()}";
+        }
+
         #region on button click
 
         private void Button_Weapon_Gun_Click(object sender, RoutedEventArgs e)
         {
-            this.selectedWeapon = new Weapon("Karabin", DamageValues.weak, PenetrationValues.weak, WeaponType.hitscan, 100);
+            selectedWeapon = new Weapon("Karabin", DamageValues.weak, PenetrationValues.weak, WeaponType.hitscan, 100);
+            weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_Cannon_Click(object sender, RoutedEventArgs e)
         {
-            this.selectedWeapon = new Weapon("Działko", DamageValues.medium, PenetrationValues.medium, WeaponType.hitscan, 100);
+            selectedWeapon = new Weapon("Działko", DamageValues.medium, PenetrationValues.medium, WeaponType.hitscan, 100);
+            weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_Flechettes_Click(object sender, RoutedEventArgs e)
         {
-            this.selectedWeapon = new Weapon("Fleszetki", DamageValues.weak, PenetrationValues.weak, WeaponType.hitscan, 75);
+            selectedWeapon = new Weapon("Fleszetki", DamageValues.weak, PenetrationValues.weak, WeaponType.hitscan, 75);
+            weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_Rocket_Click(object sender, RoutedEventArgs e)
         {
-            this.selectedWeapon = new Weapon("Rakieta", DamageValues.medium, PenetrationValues.strong, WeaponType.hitscan, 50);
+            selectedWeapon = new Weapon("Rakieta", DamageValues.medium, PenetrationValues.strong, WeaponType.hitscan, 50);
+            weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_ExplosiveBomb_Click(object sender, RoutedEventArgs e)
         {
-            this.selectedWeapon = new Weapon("Bomba burząca", DamageValues.strong, PenetrationValues.strong, WeaponType.hitscan, 100);
+            selectedWeapon = new Weapon("Bomba burząca", DamageValues.strong, PenetrationValues.strong, WeaponType.hitscan, 100);
+            weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_ShardBomb_Click(object sender, RoutedEventArgs e)
         {
-            this.selectedWeapon = new Weapon("Bomba tocząca", DamageValues.strong, PenetrationValues.strong, WeaponType.hitscan, 100);
+            selectedWeapon = new Weapon("Bomba odłamkowa", DamageValues.weak, PenetrationValues.weak, WeaponType.hitscan, 100);
+            weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_FlameBomb_Click(object sender, RoutedEventArgs e)
         {
-            this.selectedWeapon = new Weapon("Bomba odłamkowa", DamageValues.weak, PenetrationValues.weak, WeaponType.hitscan, 100);
+            selectedWeapon = new Weapon("Bomba zapalająca", DamageValues.medium, PenetrationValues.weak, WeaponType.hitscan, 100);
+            weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_RollingBomb_Click(object sender, RoutedEventArgs e)
         {
-            this.selectedWeapon = new Weapon("Bomba zapalająca", DamageValues.medium, PenetrationValues.weak, WeaponType.hitscan, 100);
+            selectedWeapon = new Weapon("Bomba tocząca", DamageValues.strong, PenetrationValues.strong, WeaponType.hitscan, 100);
+            weaponChange(selectedWeapon);
         }
 
         #endregion
