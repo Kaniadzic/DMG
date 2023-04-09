@@ -50,4 +50,12 @@
        projectile,
        area
     }
+
+    public enum WindDirection
+    {
+        west, 
+        north, 
+        east,
+        south
+    }
 }
