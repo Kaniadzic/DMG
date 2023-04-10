@@ -37,13 +37,6 @@
         strong = 90
     }
 
-    public enum DamageValues
-    {
-        weak = 25,
-        medium = 55, 
-        strong = 88
-    }
-
     public enum WeaponType
     {
        hitscan,
