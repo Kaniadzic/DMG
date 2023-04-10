@@ -11,54 +11,25 @@ namespace DMG.Entities
         public short hitpoints { get; set; }
         public short armor { get; set; }
         public char symbol { get; set; }
+        public byte x { get; set; }
+        public byte y { get; set; }
 
-        public void takeDamage(short damage, short penetration)
-        {
-            if (this.armor >= 0)
-            {
-                this.armor -= (short)(damage * (penetration / 100));
-            }
-            else
-            {
-                this.hitpoints -= damage;
-            }
-        }
+        public Enemy() { }
 
-
-        public bool checkIfTargetDestroyed()
-        {
-            if (this.hitpoints == 0)
-            {
-                return true;
-            }
-
-            return false;
-        }
-    }
-
-    /// <summary>
-    /// Koordynaty przeciwnika
-    /// </summary>
-    public class EnemyCoordinates
-    {
-        public EnemyCoordinates() { }
-
-        public EnemyCoordinates(byte x, byte y)
+        public Enemy(byte x, byte y) 
         {
             this.x = x;
             this.y = y;
         }
 
-        public byte x { get; set; }
-        public byte y { get; set; }
-    }
-
-    /// <summary>
-    /// Encja przeciwnik - koordyanty
-    /// </summary>
-    public class BoardEnemy
-    {
-        public Enemy enemy { get; set; }
-        public EnemyCoordinates coordinates { get; set; }
+        public Enemy(EnemyTypes type, short hitpoints, short armor, char symbol, byte x, byte y)
+        {
+            this.type = type;
+            this.hitpoints = hitpoints;
+            this.armor = armor;
+            this.symbol = symbol;
+            this.x = x;
+            this.y = y;
+        }
     }
 }

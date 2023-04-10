@@ -20,12 +20,10 @@ namespace DMG
         private WindDirection windDirection = WindLogic.randomizeWindDirection();
         private uint shootCounter = 0;
 
-        List<BoardEnemy> enemies = new List<BoardEnemy>();
-        //private Enemy[,] board;
+        List<Enemy> enemies = new List<Enemy>();
 
         private EnemiesLogic generator = new EnemiesLogic();
         private BoardLogic boardLogic = new BoardLogic();
-        //private Weapon weaponLogic = new Weapon();
 
         #endregion
 
@@ -74,16 +72,15 @@ namespace DMG
                         break;
                 }
 
-                
+
+                windDirection = WindLogic.randomizeWindDirection();
+                TextBlock_WindDirection.Text = windDirection.ToString();
             }
         }
 
         private void dealDamageHitscan(int x, int y)
         {
-            foreach(var enemy in enemies)
-            {
-                enemy.enemy.hitpoints -= 5;
-            }
+            enemies.Where(e => (e.x == x && e.y == y)).First().hitpoints -= 5;
 
             ListView_Enemies.Items.Refresh();
         }

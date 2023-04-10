@@ -28,19 +28,23 @@ namespace DMG.Logic
         /// </summary>
         /// <param name="enemiesCount"> liczba generowanych przeciwników </param>
         /// <returns> Lista przeciwników i koordynatów </returns>
-        public List<BoardEnemy> generateBoardEnemies(ushort enemiesCount = 9)
+        public List<Enemy> generateBoardEnemies(ushort enemiesCount = 9)
         {
-            List<BoardEnemy> boardEnemies = new List<BoardEnemy>();
+            List<Enemy> boardEnemies = new List<Enemy>();
             Random random = new Random();
 
-            List<EnemyCoordinates> coordinates = generateEnemiesCoordinates(enemiesCount);
+            List<Enemy> coordinates = generateEnemiesCoordinates(enemiesCount);
 
             for (int i = 0; i < enemiesCount; i++)
             {
-                boardEnemies.Add(new BoardEnemy
+                boardEnemies.Add(new Enemy
                 {
-                    enemy = predefinedEnemies.ElementAt(random.Next(1, 9)),
-                    coordinates = coordinates.ElementAt(i)
+                    hitpoints = predefinedEnemies.ElementAt(random.Next(1, 9)).hitpoints,
+                    armor = predefinedEnemies.ElementAt(random.Next(1, 9)).armor,
+                    symbol = predefinedEnemies.ElementAt(random.Next(1, 9)).symbol,
+                    type = predefinedEnemies.ElementAt(random.Next(1, 9)).type,
+                    x = coordinates.ElementAt(i).x,
+                    y = coordinates.ElementAt(i).y
                 });
             }
 
@@ -54,9 +58,9 @@ namespace DMG.Logic
         /// <param name="maxX"> maksymalna wartość X </param>
         /// <param name="maxY"> maksymalna wartość Y </param>
         /// <returns> Lista koordynatów </returns>
-        public List<EnemyCoordinates> generateEnemiesCoordinates(ushort enemiesCount = 9, byte maxX = 9, byte maxY = 9)
+        public List<Enemy> generateEnemiesCoordinates(ushort enemiesCount = 9, byte maxX = 9, byte maxY = 9)
         {
-            List<EnemyCoordinates> coordinates = new List<EnemyCoordinates>();
+            List<Enemy> coordinates = new List<Enemy>();
             Random random = new Random();
 
             // lista pomocnicza
@@ -64,7 +68,7 @@ namespace DMG.Logic
 
             while (coordinates.Count < enemiesCount)
             {
-                EnemyCoordinates coord = new EnemyCoordinates(
+                Enemy coord = new Enemy(
                     (byte)random.Next(0, maxX),
                     (byte)random.Next(0, maxY)
                 );

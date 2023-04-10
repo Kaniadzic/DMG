@@ -98,10 +98,10 @@
 
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Typ" Width="75" DisplayMemberBinding="{Binding enemy.type}"/>
-                            <GridViewColumn Header="Symbol" Width="50" DisplayMemberBinding="{Binding enemy.symbol}"/>
-                            <GridViewColumn Header="Zdrowie" Width="55" DisplayMemberBinding="{Binding enemy.hitpoints}"/>
-                            <GridViewColumn Header="Pancerz" Width="55" DisplayMemberBinding="{Binding enemy.armor}"/>
+                            <GridViewColumn Header="Typ" Width="75" DisplayMemberBinding="{Binding type}"/>
+                            <GridViewColumn Header="Symbol" Width="50" DisplayMemberBinding="{Binding symbol}"/>
+                            <GridViewColumn Header="Zdrowie" Width="55" DisplayMemberBinding="{Binding hitpoints}"/>
+                            <GridViewColumn Header="Pancerz" Width="55" DisplayMemberBinding="{Binding armor}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

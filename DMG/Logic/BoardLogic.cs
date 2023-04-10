@@ -14,13 +14,13 @@ namespace DMG.Logic
         /// <param name="enemies"> Lista przeciwników z koordynatami </param>
         /// <param name="size"> Rozmiar planszy </param>
         /// <returns> Plansza z przeciwnikami </returns>
-        public Enemy[,] generateBoard(List<BoardEnemy> enemies, ushort size = 9)
+        public Enemy[,] generateBoard(List<Enemy> enemies, ushort size = 9)
         {
             Enemy[,] board = new Enemy[size, size];
 
             foreach(var enemy in enemies)
             {
-                board[enemy.coordinates.x, enemy.coordinates.y] = enemy.enemy;
+                board[enemy.x, enemy.y] = enemy;
             }
 
             return board;
@@ -30,22 +30,22 @@ namespace DMG.Logic
         /// Dodanie przeciwników do planszy
         /// </summary>
         /// <param name="enemies"> Lista przeciwników </param>
-        public void populateBoardWithEnemies(List<BoardEnemy> enemies, Grid grid)
+        public void populateBoardWithEnemies(List<Enemy> enemies, Grid grid)
         {
             foreach (var enemy in enemies)
             {
                 Button btn = new Button();
-                btn.Content = enemy.enemy.symbol;
+                btn.Content = enemy.symbol;
                 btn.Height = 32;
                 btn.Width = 32;
                 btn.FontWeight = FontWeights.Bold;
-                btn.Background = Brushes.Red;
+                btn.Background = Brushes.Aqua;
                 btn.BorderBrush = null;
 
                 grid.Children.Add(btn);
 
-                Grid.SetRow(btn, enemy.coordinates.y);
-                Grid.SetColumn(btn, enemy.coordinates.x);
+                Grid.SetRow(btn, enemy.y);
+                Grid.SetColumn(btn, enemy.x);
             }
         }
 
