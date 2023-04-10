@@ -141,19 +141,28 @@
                 <Button
                     x:Name="Button_Weapon_Gun"
                     Grid.Row="1"
-                    Content="Karabin"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Left" 
                     Margin="18,11,0,10" 
-                    VerticalAlignment="Stretch" Click="Button_Weapon_Gun_Click"/>
+                    VerticalAlignment="Stretch" 
+                    Click="Button_Weapon_Gun_Click">
+
+                    <StackPanel>
+                        <Image Source="Resource/Image/gun.png" />
+                    </StackPanel>
+                </Button>
                 <Button
                     x:Name="Button_Weapon_Cannon"
                     Grid.Row="1"
-                    Content="Działko"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Right" 
                     Margin="0,11,19,10" 
-                    VerticalAlignment="Stretch" Click="Button_Weapon_Cannon_Click">
+                    VerticalAlignment="Stretch" 
+                    Click="Button_Weapon_Cannon_Click">
+
+                    <StackPanel>
+                        <Image Source="Resource/Image/cannon.png" />
+                    </StackPanel>
                 </Button>
             </Grid>
 
@@ -176,19 +185,28 @@
                 <Button
                     x:Name="Button_Weapon_Flechettes"
                     Grid.Row="1"
-                    Content="Fleszetki"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Left" 
                     Margin="18,11,0,10" 
-                    VerticalAlignment="Stretch" Click="Button_Weapon_Flechettes_Click"/>
+                    VerticalAlignment="Stretch" 
+                    Click="Button_Weapon_Flechettes_Click">
+
+                    <StackPanel>
+                        <Image Source="Resource/Image/flechettes.png" />
+                    </StackPanel>
+                </Button>
                 <Button
                     x:Name="Button_Weapon_Rocket"
                     Grid.Row="1"
-                    Content="Rakieta"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Right" 
                     Margin="0,11,19,10" 
-                    VerticalAlignment="Stretch" Click="Button_Weapon_Rocket_Click">
+                    VerticalAlignment="Stretch" 
+                    Click="Button_Weapon_Rocket_Click">
+
+                    <StackPanel>
+                        <Image Source="Resource/Image/rocket.png" />
+                    </StackPanel>
                 </Button>
             </Grid>
 
@@ -211,36 +229,54 @@
                 <Button
                     x:Name="Button_Weapon_ExplosiveBomb"
                     Grid.Row="1"
-                    Content="Burząca"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Left" 
                     Margin="0" 
-                    VerticalAlignment="Stretch" Click="Button_Weapon_ExplosiveBomb_Click"/>
+                    VerticalAlignment="Stretch" 
+                    Click="Button_Weapon_ExplosiveBomb_Click">
+
+                    <StackPanel>
+                        <Image Source="Resource/Image/explosive.png" />
+                    </StackPanel>
+                </Button>
                 <Button
                     x:Name="Button_Weapon_RollingBomb"
                     Grid.Row="1"
-                    Content="Tocząca"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Left" 
                     Margin="96 0 0 0" 
-                    VerticalAlignment="Stretch" Click="Button_Weapon_RollingBomb_Click">
+                    VerticalAlignment="Stretch" 
+                    Click="Button_Weapon_RollingBomb_Click">
+
+                    <StackPanel>
+                        <Image Source="Resource/Image/rolling.png" />
+                    </StackPanel>
                 </Button>
                 <Button
                     x:Name="Button_Weapon_ShardBomb"
                     Grid.Row="1"
-                    Content="Odłamkowa"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Left" 
                     Margin="192 0 0 0" 
-                    VerticalAlignment="Stretch" Click="Button_Weapon_ShardBomb_Click"/>
+                    VerticalAlignment="Stretch" 
+                    Click="Button_Weapon_ShardBomb_Click">
+
+                    <StackPanel>
+                        <Image Source="Resource/Image/shard.png" />
+                    </StackPanel>
+                </Button>
                 <Button
                     x:Name="Button_Weapon_FlameBomb"
                     Grid.Row="1"
-                    Content="Zapalająca"
                     Style="{StaticResource Button_WeaponTag}" 
                     HorizontalAlignment="Left" 
                     Margin="288 0 0 0" 
-                    VerticalAlignment="Stretch" Click="Button_Weapon_FlameBomb_Click">
+                    VerticalAlignment="Stretch" 
+                    Click="Button_Weapon_FlameBomb_Click">
+
+                    <StackPanel>
+                        <Image Source="Resource/Image/flame.png" />
+                    </StackPanel>
                 </Button>
             </Grid>
         </Grid>

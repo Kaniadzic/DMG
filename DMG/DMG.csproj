@@ -7,4 +7,26 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resource\Image\cannon.png" />
+    <None Remove="Resource\Image\explosive.png" />
+    <None Remove="Resource\Image\flame.png" />
+    <None Remove="Resource\Image\flechettes.png" />
+    <None Remove="Resource\Image\gun.png" />
+    <None Remove="Resource\Image\rocket.png" />
+    <None Remove="Resource\Image\rolling.png" />
+    <None Remove="Resource\Image\shard.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resource\Image\cannon.png" />
+    <Resource Include="Resource\Image\explosive.png" />
+    <Resource Include="Resource\Image\flame.png" />
+    <Resource Include="Resource\Image\flechettes.png" />
+    <Resource Include="Resource\Image\gun.png" />
+    <Resource Include="Resource\Image\rocket.png" />
+    <Resource Include="Resource\Image\rolling.png" />
+    <Resource Include="Resource\Image\shard.png" />
+  </ItemGroup>
+
 </Project>
