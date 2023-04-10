@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using DMG.Entities;
@@ -12,25 +14,31 @@ namespace DMG
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Pola
+
         private Weapon selectedWeapon = null;
         private WindDirection windDirection = WindLogic.randomizeWindDirection();
         private uint shootCounter = 0;
 
-        private Enemy[,] board;
+        List<BoardEnemy> enemies = new List<BoardEnemy>();
+        //private Enemy[,] board;
+
+        private EnemiesLogic generator = new EnemiesLogic();
+        private BoardLogic boardLogic = new BoardLogic();
+        //private Weapon weaponLogic = new Weapon();
+
+        #endregion
 
         public MainWindow()
         {
             InitializeComponent();
-            EnemiesLogic generator = new EnemiesLogic();
-            BoardLogic boardLogic = new BoardLogic();
-            Weapon weaponLogic = new Weapon();
-
+            
             TextBlock_WindDirection.Text = windDirection.ToString();
 
-            List<BoardEnemy> enemies = generator.generateBoardEnemies();
+            enemies = generator.generateBoardEnemies();
             ListView_Enemies.ItemsSource = enemies;
 
-            board = boardLogic.generateBoard(enemies);
+            //board = boardLogic.generateBoard(enemies);
 
             boardLogic.populateBoard(Grid_GameBoard);
             boardLogic.populateBoardWithEnemies(enemies, Grid_GameBoard);
@@ -38,6 +46,11 @@ namespace DMG
             initializeBoardButtons();
         }
 
+        /// <summary>
+        /// Strzał
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void shoot(object sender, RoutedEventArgs e)
         {
             if (selectedWeapon == null) {
@@ -48,11 +61,31 @@ namespace DMG
                 shootCounter += 1;
                 TextBlock_ShootCounter.Text = shootCounter.ToString();
 
-                int x = Grid.GetColumn((UIElement)sender);
-                int y = Grid.GetRow((UIElement)sender);
+                switch (selectedWeapon.type)
+                {
+                    case WeaponType.hitscan:
+                        dealDamageHitscan(Grid.GetColumn((UIElement)sender), Grid.GetRow((UIElement)sender));
+                        break;
+                    case WeaponType.projectile:
 
-                var dupa = board[x, y];
+                        break;
+                    case WeaponType.area:
+
+                        break;
+                }
+
+                
             }
+        }
+
+        private void dealDamageHitscan(int x, int y)
+        {
+            foreach(var enemy in enemies)
+            {
+                enemy.enemy.hitpoints -= 5;
+            }
+
+            ListView_Enemies.Items.Refresh();
         }
 
         /// <summary>

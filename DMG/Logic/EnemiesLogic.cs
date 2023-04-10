@@ -12,15 +12,15 @@ namespace DMG.Logic
 
         public EnemiesLogic()
         {
-            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Bunker, armor = (ushort)ArmorValues.lot, hitpoints = (ushort)HitpointsValues.medium, symbol = 'B' });
-            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Barrack, armor = (ushort)ArmorValues.few, hitpoints = (ushort)HitpointsValues.lot, symbol = 'A' });
-            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Trench, armor = (ushort)ArmorValues.few, hitpoints = (ushort)HitpointsValues.medium, symbol = 'U' });
-            predefinedEnemies.Add(new Enemy { type = EnemyTypes.AntiAir, armor = (ushort)ArmorValues.few, hitpoints = (ushort)HitpointsValues.few, symbol = '/' });
-            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Tank, armor = (ushort)ArmorValues.medium, hitpoints = (ushort)HitpointsValues.lot, symbol = '=' });
-            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Truck, armor = (ushort)ArmorValues.none, hitpoints = (ushort)HitpointsValues.medium, symbol = '-' });
-            predefinedEnemies.Add(new Enemy { type = EnemyTypes.CommandPost, armor = (ushort)ArmorValues.lot, hitpoints = (ushort)HitpointsValues.few, symbol = '*' });
-            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Airstrip, armor = (ushort)ArmorValues.lot, hitpoints = (ushort)HitpointsValues.hitpoint, symbol = '|' });
-            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Hangar, armor = (ushort)ArmorValues.none, hitpoints = (ushort)HitpointsValues.lot, symbol = 'H' });
+            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Bunker, armor = (short)ArmorValues.lot, hitpoints = (short)HitpointsValues.medium, symbol = 'B' });
+            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Barrack, armor = (short)ArmorValues.few, hitpoints = (short)HitpointsValues.lot, symbol = 'A' });
+            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Trench, armor = (short)ArmorValues.few, hitpoints = (short)HitpointsValues.medium, symbol = 'U' });
+            predefinedEnemies.Add(new Enemy { type = EnemyTypes.AntiAir, armor = (short)ArmorValues.few, hitpoints = (short)HitpointsValues.few, symbol = '/' });
+            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Tank, armor = (short)ArmorValues.medium, hitpoints = (short)HitpointsValues.lot, symbol = '=' });
+            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Truck, armor = (short)ArmorValues.none, hitpoints = (short)HitpointsValues.medium, symbol = '-' });
+            predefinedEnemies.Add(new Enemy { type = EnemyTypes.CommandPost, armor = (short)ArmorValues.lot, hitpoints = (short)HitpointsValues.few, symbol = '*' });
+            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Airstrip, armor = (short)ArmorValues.lot, hitpoints = (short)HitpointsValues.hitpoint, symbol = '|' });
+            predefinedEnemies.Add(new Enemy { type = EnemyTypes.Hangar, armor = (short)ArmorValues.none, hitpoints = (short)HitpointsValues.lot, symbol = 'H' });
         }
 
         /// <summary>

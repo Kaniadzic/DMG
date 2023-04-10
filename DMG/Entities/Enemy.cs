@@ -8,15 +8,15 @@ namespace DMG.Entities
     public class Enemy
     {
         public EnemyTypes type { get; set; }
-        public ushort hitpoints { get; set; }
-        public ushort armor { get; set; }
+        public short hitpoints { get; set; }
+        public short armor { get; set; }
         public char symbol { get; set; }
 
-        public void takeDamage(ushort damage, ushort penetration)
+        public void takeDamage(short damage, short penetration)
         {
             if (this.armor >= 0)
             {
-                this.armor -= (ushort)(damage * (penetration / 100));
+                this.armor -= (short)(damage * (penetration / 100));
             }
             else
             {
