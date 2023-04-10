@@ -39,7 +39,7 @@ namespace DMG.Logic
                 btn.Height = 32;
                 btn.Width = 32;
                 btn.FontWeight = FontWeights.Bold;
-                btn.Background = Brushes.Aqua;
+                btn.Background = Brushes.Green;
                 btn.BorderBrush = null;
 
                 grid.Children.Add(btn);
@@ -47,6 +47,11 @@ namespace DMG.Logic
                 Grid.SetRow(btn, enemy.y);
                 Grid.SetColumn(btn, enemy.x);
             }
+        }
+
+        public void deleteEnemyFromBoard(Grid grid)
+        {
+            
         }
 
         /// <summary>

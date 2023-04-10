@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -24,30 +25,33 @@ namespace DMG
 
         private EnemiesLogic generator = new EnemiesLogic();
         private BoardLogic boardLogic = new BoardLogic();
+        private DamageLogic damageLogic = new DamageLogic();
 
         #endregion
 
         public MainWindow()
         {
             InitializeComponent();
-            
+
+            // zmiana kierunku wiatru
             TextBlock_WindDirection.Text = windDirection.ToString();
 
+            // generowanie przeciwników
             enemies = generator.generateBoardEnemies();
             ListView_Enemies.ItemsSource = enemies;
 
-            //board = boardLogic.generateBoard(enemies);
-
+            // wypełnienie planszy buttonami
             boardLogic.populateBoard(Grid_GameBoard);
             boardLogic.populateBoardWithEnemies(enemies, Grid_GameBoard);
 
+            // dodanie click eventów do buttonów planszy
             initializeBoardButtons();
         }
 
         /// <summary>
         /// Strzał
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender"> Kliknięty button planszy </param>
         /// <param name="e"></param>
         private void shoot(object sender, RoutedEventArgs e)
         {
@@ -62,27 +66,97 @@ namespace DMG
                 switch (selectedWeapon.type)
                 {
                     case WeaponType.hitscan:
-                        dealDamageHitscan(Grid.GetColumn((UIElement)sender), Grid.GetRow((UIElement)sender));
+                        dealDamageHitscan(Grid.GetColumn((UIElement)sender), Grid.GetRow((UIElement)sender), sender);
                         break;
                     case WeaponType.projectile:
-
+                        dealDamageProjectile(Grid.GetColumn((UIElement)sender), Grid.GetRow((UIElement)sender), sender);
                         break;
                     case WeaponType.area:
 
                         break;
                 }
 
-
+                // zmiana kierunku wiatru
                 windDirection = WindLogic.randomizeWindDirection();
                 TextBlock_WindDirection.Text = windDirection.ToString();
             }
         }
 
-        private void dealDamageHitscan(int x, int y)
+        /// <summary>
+        /// Strzał - hitscan
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="btn"> Kliknięty element planszy </param>
+        private void dealDamageHitscan(int x, int y, object btn)
         {
-            enemies.Where(e => (e.x == x && e.y == y)).First().hitpoints -= 5;
+            var target = enemies.Where(e => (e.x == x && e.y == y)).FirstOrDefault();
+            short calculatedDamage = damageLogic.calculateDamage(selectedWeapon.minDamage, selectedWeapon.maxDamage);
 
-            ListView_Enemies.Items.Refresh();
+            if (target != null)
+            {
+                if (target.armor > 0)
+                {
+                    target.armor -= (short)(calculatedDamage * damageLogic.calculatePenetration(selectedWeapon.penetration));
+                }
+                else
+                {
+                    if (target.hitpoints - calculatedDamage <= 0)
+                    {
+                        Grid_GameBoard.Children.Remove((UIElement)btn);
+
+                        enemies.Remove(target);
+                    }
+                    else
+                    {
+                        target.hitpoints -= calculatedDamage;
+                    }
+                }
+
+
+                ListView_Enemies.Items.Refresh();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="btn"></param>
+        private void dealDamageProjectile(int x, int y, object btn)
+        {
+            var target = enemies.Where(e => (e.x == x && e.y == y)).FirstOrDefault();
+            short calculatedDamage = damageLogic.calculateDamage(selectedWeapon.minDamage, selectedWeapon.maxDamage);
+
+            if (target != null && damageLogic.calculateHit(selectedWeapon.hitChance))
+            {
+                if (target.armor > 0)
+                {
+                    target.armor -= (short)(calculatedDamage * damageLogic.calculatePenetration(selectedWeapon.penetration));
+                }
+                else
+                {
+                    if (target.hitpoints - calculatedDamage <= 0)
+                    {
+                        Grid_GameBoard.Children.Remove((UIElement)btn);
+
+                        enemies.Remove(target);
+                    }
+                    else
+                    {
+                        target.hitpoints -= calculatedDamage;
+                    }
+                }
+
+
+                ListView_Enemies.Items.Refresh();
+            }
+        }
+
+        private void checkWinConditions()
+        {
+
         }
 
         /// <summary>
@@ -121,37 +195,37 @@ namespace DMG
 
         private void Button_Weapon_Flechettes_Click(object sender, RoutedEventArgs e)
         {
-            selectedWeapon = new Weapon("Fleszetki", 10, 45, PenetrationValues.weak, WeaponType.hitscan, 75);
+            selectedWeapon = new Weapon("Fleszetki", 10, 45, PenetrationValues.weak, WeaponType.projectile, 75);
             weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_Rocket_Click(object sender, RoutedEventArgs e)
         {
-            selectedWeapon = new Weapon("Rakieta", 30, 60, PenetrationValues.strong, WeaponType.hitscan, 50);
+            selectedWeapon = new Weapon("Rakieta", 30, 60, PenetrationValues.strong, WeaponType.projectile, 50);
             weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_ExplosiveBomb_Click(object sender, RoutedEventArgs e)
         {
-            selectedWeapon = new Weapon("Bomba burząca", 70, 100, PenetrationValues.strong, WeaponType.hitscan, 75);
+            selectedWeapon = new Weapon("Bomba burząca", 70, 100, PenetrationValues.strong, WeaponType.area, 75);
             weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_ShardBomb_Click(object sender, RoutedEventArgs e)
         {
-            selectedWeapon = new Weapon("Bomba odłamkowa", 25, 50, PenetrationValues.weak, WeaponType.hitscan, 90);
+            selectedWeapon = new Weapon("Bomba odłamkowa", 25, 50, PenetrationValues.weak, WeaponType.area, 90);
             weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_FlameBomb_Click(object sender, RoutedEventArgs e)
         {
-            selectedWeapon = new Weapon("Bomba zapalająca", 32, 64, PenetrationValues.weak, WeaponType.hitscan, 85);
+            selectedWeapon = new Weapon("Bomba zapalająca", 32, 64, PenetrationValues.weak, WeaponType.area, 85);
             weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_RollingBomb_Click(object sender, RoutedEventArgs e)
         {
-            selectedWeapon = new Weapon("Bomba tocząca", 88, 95, PenetrationValues.strong, WeaponType.hitscan, 95);
+            selectedWeapon = new Weapon("Bomba tocząca", 88, 95, PenetrationValues.strong, WeaponType.area, 95);
             weaponChange(selectedWeapon);
         }
 

@@ -37,12 +37,14 @@ namespace DMG.Logic
 
             for (int i = 0; i < enemiesCount; i++)
             {
+                int randomizedEnemyTag = random.Next(1, 9);
+
                 boardEnemies.Add(new Enemy
                 {
-                    hitpoints = predefinedEnemies.ElementAt(random.Next(1, 9)).hitpoints,
-                    armor = predefinedEnemies.ElementAt(random.Next(1, 9)).armor,
-                    symbol = predefinedEnemies.ElementAt(random.Next(1, 9)).symbol,
-                    type = predefinedEnemies.ElementAt(random.Next(1, 9)).type,
+                    hitpoints = predefinedEnemies.ElementAt(randomizedEnemyTag).hitpoints,
+                    armor = predefinedEnemies.ElementAt(randomizedEnemyTag).armor,
+                    symbol = predefinedEnemies.ElementAt(randomizedEnemyTag).symbol,
+                    type = predefinedEnemies.ElementAt(randomizedEnemyTag).type,
                     x = coordinates.ElementAt(i).x,
                     y = coordinates.ElementAt(i).y
                 });

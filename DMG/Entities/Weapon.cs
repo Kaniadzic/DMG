@@ -7,21 +7,21 @@ namespace DMG.Entities
     {
         public Weapon() { }
 
-        public Weapon(string name, ushort minDamage, ushort maxDamage, PenetrationValues penetration, WeaponType type, ushort hitChance) 
+        public Weapon(string name, short minDamage, short maxDamage, PenetrationValues penetration, WeaponType type, short hitChance) 
         { 
             this.name = name;
-            this.minDamage = (ushort)minDamage;
-            this.maxDamage = (ushort)maxDamage;
-            this.penetration = (ushort)penetration;
+            this.minDamage = minDamage;
+            this.maxDamage = maxDamage;
+            this.penetration = (short)penetration;
             this.type = type;
             this.hitChance = hitChance;
         }
 
         public string name { get; set; }
-        public ushort minDamage { get; set; }
-        public ushort maxDamage { get; set; }
-        public ushort penetration { get; set; }
+        public short minDamage { get; set; }
+        public short maxDamage { get; set; }
+        public short penetration { get; set; }
         public WeaponType type { get; set; }
-        public ushort hitChance { get; set; }
+        public short hitChance { get; set; }
     }
 }
