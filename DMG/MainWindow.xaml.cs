@@ -80,6 +80,8 @@ namespace DMG
                 windDirection = WindLogic.randomizeWindDirection();
                 TextBlock_WindDirection.Text = windDirection.ToString();
             }
+
+            checkWinConditions();
         }
 
         /// <summary>
@@ -154,11 +156,6 @@ namespace DMG
             }
         }
 
-        private void checkWinConditions()
-        {
-
-        }
-
         /// <summary>
         /// Dodanie eventu click do planszy
         /// </summary>
@@ -167,6 +164,23 @@ namespace DMG
             foreach (Button btn in Grid_GameBoard.Children)
             {
                 btn.Click += new RoutedEventHandler(this.shoot);
+            }
+        }
+
+        private void checkWinConditions()
+        {
+            if (enemies.Count == 0)
+            {
+                Grid_GameContainer.Children.Clear();
+
+                TextBlock gameOverText = new TextBlock();
+                gameOverText.Text = "Wygrałeś!";
+                gameOverText.HorizontalAlignment = HorizontalAlignment.Center;
+                gameOverText.VerticalAlignment = VerticalAlignment.Center;
+                gameOverText.FontSize = 32;
+                gameOverText.FontWeight = FontWeights.Bold;
+
+                Grid_GameContainer.Children.Add(gameOverText);
             }
         }
 

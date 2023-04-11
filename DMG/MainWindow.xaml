@@ -37,7 +37,8 @@
             <!-- Gra -->
             <Grid
                 Grid.Column="0"
-                Background="White">
+                Background="White"
+                x:Name="Grid_GameContainer">
 
                 <Grid
                     Background="Black"

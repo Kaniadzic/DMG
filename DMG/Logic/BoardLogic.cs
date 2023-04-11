@@ -49,11 +49,6 @@ namespace DMG.Logic
             }
         }
 
-        public void deleteEnemyFromBoard(Grid grid)
-        {
-            
-        }
-
         /// <summary>
         /// Wypełnienie planszy buttonami
         /// </summary>
