@@ -73,5 +73,22 @@ namespace DMG.Logic
                 }
             }
         }
+
+        /// <summary>
+        /// Zakończenie gry
+        /// </summary>
+        public void checkWinConditions(Grid grid)
+        {
+            grid.Children.Clear();
+
+            TextBlock gameOverText = new TextBlock();
+            gameOverText.Text = "Wygrałeś!";
+            gameOverText.HorizontalAlignment = HorizontalAlignment.Center;
+            gameOverText.VerticalAlignment = VerticalAlignment.Center;
+            gameOverText.FontSize = 32;
+            gameOverText.FontWeight = FontWeights.Bold;
+
+            grid.Children.Add(gameOverText);
+        }
     }
 }

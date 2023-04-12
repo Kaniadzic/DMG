@@ -41,7 +41,10 @@
     {
        hitscan,
        projectile,
-       area
+       area_explosive,
+       area_flame,
+       area_shard,
+       area_rolling
     }
 
     public enum WindDirection

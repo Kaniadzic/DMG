@@ -71,8 +71,8 @@ namespace DMG
                     case WeaponType.projectile:
                         dealDamageProjectile(Grid.GetColumn((UIElement)sender), Grid.GetRow((UIElement)sender), sender);
                         break;
-                    case WeaponType.area:
-
+                    default:
+                        dealDamageArea(Grid.GetColumn((UIElement)sender), Grid.GetRow((UIElement)sender), sender);
                         break;
                 }
 
@@ -81,7 +81,10 @@ namespace DMG
                 TextBlock_WindDirection.Text = windDirection.ToString();
             }
 
-            checkWinConditions();
+            if (enemies.Count == 0)
+            {
+                boardLogic.checkWinConditions(Grid_GameContainer);
+            }
         }
 
         /// <summary>
@@ -121,7 +124,7 @@ namespace DMG
         }
 
         /// <summary>
-        /// 
+        /// Strzał - projectile
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -151,7 +154,59 @@ namespace DMG
                     }
                 }
 
+                ListView_Enemies.Items.Refresh();
+            }
+        }
 
+        /// <summary>
+        /// Strzał - obszarowy
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="btn"></param>
+        private void dealDamageArea(int x, int y, object btn)
+        {
+            IEnumerable<Enemy> targets = null;
+
+            /// pattern wybuchu
+            switch (selectedWeapon.type)
+            {
+                case WeaponType.area_explosive:
+                    targets = enemies
+                        .Where(e => (e.x >= x - 1 && e.x <= x + 1))
+                        .Where(e => (e.y >= y - 1 && e.y <= y + 1));
+                    break;
+                case WeaponType.area_flame:
+
+                    break;
+                case WeaponType.area_rolling:
+                    targets = enemies
+                        .Where(e => (e.x == x))
+                        .Where(e => (e.y >= y - 2 && e.y <= y + 2));
+                    break;
+                case WeaponType.area_shard:
+
+                    break;
+            }
+
+            // zadanie dmg celom
+            if (targets.Any())
+            {
+                short calculatedDamage = damageLogic.calculateDamage(selectedWeapon.minDamage, selectedWeapon.maxDamage);
+
+                foreach (var target in targets)
+                {
+                    if (target.armor > 0)
+                    {
+                        target.armor -= (short)(calculatedDamage * damageLogic.calculatePenetration(selectedWeapon.penetration));
+                    }
+                    else
+                    {
+                        target.hitpoints -= calculatedDamage;
+                    }
+                }
+
+                enemies.RemoveAll(e => e.hitpoints <= 0);
                 ListView_Enemies.Items.Refresh();
             }
         }
@@ -167,25 +222,8 @@ namespace DMG
             }
         }
 
-        private void checkWinConditions()
-        {
-            if (enemies.Count == 0)
-            {
-                Grid_GameContainer.Children.Clear();
-
-                TextBlock gameOverText = new TextBlock();
-                gameOverText.Text = "Wygrałeś!";
-                gameOverText.HorizontalAlignment = HorizontalAlignment.Center;
-                gameOverText.VerticalAlignment = VerticalAlignment.Center;
-                gameOverText.FontSize = 32;
-                gameOverText.FontWeight = FontWeights.Bold;
-
-                Grid_GameContainer.Children.Add(gameOverText);
-            }
-        }
-
         /// <summary>
-        /// 
+        /// Zmiana broni
         /// </summary>
         /// <param name="weapon"> Nowa broń </param>
         private void weaponChange(Weapon weapon)
@@ -221,25 +259,25 @@ namespace DMG
 
         private void Button_Weapon_ExplosiveBomb_Click(object sender, RoutedEventArgs e)
         {
-            selectedWeapon = new Weapon("Bomba burząca", 70, 100, PenetrationValues.strong, WeaponType.area, 75);
+            selectedWeapon = new Weapon("Bomba burząca", 70, 100, PenetrationValues.strong, WeaponType.area_explosive, 75);
             weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_ShardBomb_Click(object sender, RoutedEventArgs e)
         {
-            selectedWeapon = new Weapon("Bomba odłamkowa", 25, 50, PenetrationValues.weak, WeaponType.area, 90);
+            selectedWeapon = new Weapon("Bomba odłamkowa", 25, 50, PenetrationValues.weak, WeaponType.area_shard, 90);
             weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_FlameBomb_Click(object sender, RoutedEventArgs e)
         {
-            selectedWeapon = new Weapon("Bomba zapalająca", 32, 64, PenetrationValues.weak, WeaponType.area, 85);
+            selectedWeapon = new Weapon("Bomba zapalająca", 32, 64, PenetrationValues.weak, WeaponType.area_flame, 85);
             weaponChange(selectedWeapon);
         }
 
         private void Button_Weapon_RollingBomb_Click(object sender, RoutedEventArgs e)
         {
-            selectedWeapon = new Weapon("Bomba tocząca", 88, 95, PenetrationValues.strong, WeaponType.area, 95);
+            selectedWeapon = new Weapon("Bomba tocząca", 88, 95, PenetrationValues.strong, WeaponType.area_rolling, 95);
             weaponChange(selectedWeapon);
         }
 

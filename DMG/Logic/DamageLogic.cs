@@ -8,6 +8,9 @@ namespace DMG.Logic
 {
     public class DamageLogic
     {
+
+        #region Obliczenia DMG
+
         /// <summary>
         /// Obliczenie damage
         /// </summary>
@@ -49,5 +52,16 @@ namespace DMG.Logic
 
             return hit <= hitChance;
         }
+
+        #endregion
+
+        #region DMG obszarowy
+
+        public void getExplosiveTargets()
+        {
+
+        }
+
+        #endregion
     }
 }
