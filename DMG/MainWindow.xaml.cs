@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using DMG.Entities;
 using DMG.Enums;
 using DMG.Logic;
@@ -205,6 +206,11 @@ namespace DMG
 
                 enemies.RemoveAll(e => e.hitpoints <= 0);
                 ListView_Enemies.Items.Refresh();
+
+                Grid_GameBoard.Children.Clear();
+                boardLogic.populateBoard(Grid_GameBoard);
+                boardLogic.populateBoardWithEnemies(enemies, Grid_GameBoard);
+                initializeBoardButtons();
             }
         }
 
