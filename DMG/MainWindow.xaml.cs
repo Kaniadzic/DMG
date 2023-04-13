@@ -18,7 +18,6 @@ namespace DMG
         #region Pola
 
         private Weapon selectedWeapon = null;
-        private WindDirection windDirection = WindLogic.randomizeWindDirection();
         private uint shootCounter = 0;
 
         List<Enemy> enemies = new List<Enemy>();
@@ -32,9 +31,6 @@ namespace DMG
         public MainWindow()
         {
             InitializeComponent();
-
-            // zmiana kierunku wiatru
-            TextBlock_WindDirection.Text = windDirection.ToString();
 
             // generowanie przeciwników
             enemies = generator.generateBoardEnemies();
@@ -75,10 +71,6 @@ namespace DMG
                         dealDamageArea(Grid.GetColumn((UIElement)sender), Grid.GetRow((UIElement)sender), sender);
                         break;
                 }
-
-                // zmiana kierunku wiatru
-                windDirection = WindLogic.randomizeWindDirection();
-                TextBlock_WindDirection.Text = windDirection.ToString();
             }
 
             if (enemies.Count == 0)
@@ -177,7 +169,9 @@ namespace DMG
                         .Where(e => (e.y >= y - 1 && e.y <= y + 1));
                     break;
                 case WeaponType.area_flame:
-
+                    targets = enemies
+                        .Where(e => (e.x >= x - 2 && e.x <= x + 2))
+                        .Where(e => (e.y >= y - 1 && e.y <= y));
                     break;
                 case WeaponType.area_rolling:
                     targets = enemies
@@ -185,7 +179,10 @@ namespace DMG
                         .Where(e => (e.y >= y - 2 && e.y <= y + 2));
                     break;
                 case WeaponType.area_shard:
-
+                    targets = enemies
+                        .Where(e => (e.x >= x - 2 && e.x <= x + 2))
+                        .Where(e => (e.y >= y - 2 && e.y <= y + 2))
+                        .Where((e, i) => i % 2 == 0);
                     break;
             }
 

@@ -320,28 +320,6 @@
                     Style="{StaticResource TextBlock_WeaponTag}">
                 </TextBlock>
             </Grid>
-            
-            <!-- Kierunek wiatru -->
-            <Grid
-                Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <TextBlock
-                    Grid.Row="0"
-                    FontWeight="Bold"
-                    Text="Kierunek wiatru: "
-                    Style="{StaticResource TextBlock_WeaponTag}">
-                </TextBlock>
-                <TextBlock
-                    Name="TextBlock_WindDirection"
-                    Grid.Row="1"
-                    Text=""
-                    Style="{StaticResource TextBlock_WeaponTag}">
-                </TextBlock>
-            </Grid>
 
             <!-- Licznik strzałów -->
             <Grid
